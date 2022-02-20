@@ -51,7 +51,7 @@ class PostTag(PostListView):
         return context
 
 
-def blog_detail_view(request, pk):
+def post_detail_view(request, pk):
     context = dict()
     context['post'] = Post.objects.get(id=pk)
     context['tags'] = Tag.objects.all()
