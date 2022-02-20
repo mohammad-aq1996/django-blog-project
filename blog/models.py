@@ -3,8 +3,8 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 
-class Blog(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author', default=1)
+class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
     title = models.CharField(max_length=150)
     content = RichTextField()
     image = models.ImageField(upload_to='blog')
@@ -43,7 +43,7 @@ class Blogger(models.Model):
 
 
 class Comment(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
+    blog = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=150)
     email = models.EmailField()
     title = models.CharField(max_length=250)
