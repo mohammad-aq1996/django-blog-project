@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author', default=1)
     title = models.CharField(max_length=150)
     content = RichTextField()
     image = models.ImageField(upload_to='blog')
