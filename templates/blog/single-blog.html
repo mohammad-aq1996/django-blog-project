@@ -33,23 +33,23 @@
                                 <div class="blog_info text-right">
                                     <div class="post_tag">
 
-                                        {% for tag in blog.tags.all %}
-                                            <a href="{% url 'blog:blog_tag' tag.slug %}">{{ tag.name }}| </a>
+                                        {% for tag in post.tags.all %}
+                                            <a href="{% url 'blog:tag_view' tag.slug %}">{{ tag.name }}| </a>
                                         {% endfor %}
 
                                     </div>
                                     <ul class="blog_meta list" dir="ltr">
-                                                <li><a href="#" >{{ blog.author.first_name }} {{ blog.author.last_name }}<i class="lnr lnr-user"></i></a></li>
-                                                <li><a href="#" > {{ blog.created_at|date }}<i class="lnr lnr-calendar-full"></i></a></li>
+                                                <li><a href="#" >{{ post.author.first_name }} {{ post.author.last_name }}<i class="lnr lnr-user"></i></a></li>
+                                                <li><a href="#" > {{ post.created_at|date }}<i class="lnr lnr-calendar-full"></i></a></li>
 
                                      </ul>
 
                                 </div>
                             </div>
                             <div class="col-lg-9 col-md-9 blog_details">
-                                <h2>{{ blog.title }}</h2>
+                                <h2>{{ post.title }}</h2>
                                 <p class="excert">
-                                    {{ blog.content|safe }}
+                                    {{ post.content|safe }}
                                 </p>
 
                             </div>
@@ -57,9 +57,9 @@
 
                         </div>
                         <div class="comments-area" >
-                            <h4>  تعداد نظرات: {{ blog.comments.count }}</h4>
+                            <h4>  تعداد نظرات: {{ post.comments.count }}</h4>
                             <div class="comment-list">
-                                {% for com in blog.comments.all %}
+                                {% for com in post.comments.all %}
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="desc">
@@ -123,11 +123,11 @@
                                 </aside>
                                 <aside class="single_sidebar_widget popular_post_widget">
                                     <h3 class="widget_title">جدیدترین پست ها</h3>
-                                    {% for post in recent %}
+                                    {% for pst in recent %}
                                     <div class="media post_item">
                                         <img src="{{ post.image.url }}" width="80px" alt="post">
                                         <div class="media-body">
-                                            <a href="{% url 'blog:detail' post.id %}"><h3>{{ post.title }}</h3></a>
+                                            <a href="{% url 'blog:post_detail' pst.id %}"><h3>{{ pst.title }}</h3></a>
                                             <p>{{ post.created_at }}</p>
                                         </div>
                                     </div>
@@ -158,7 +158,7 @@
                                     <ul class="list">
                                         {% for tag in tags %}
 
-                                        <li><a href="{% url 'blog:blog_tag' tag.slug %}">{{ tag.name }}</a></li>
+                                        <li><a href="{% url 'blog:tag_view' tag.slug %}">{{ tag.name }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </aside>
