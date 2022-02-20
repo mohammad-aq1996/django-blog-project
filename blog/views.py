@@ -28,7 +28,7 @@ class PostCategory(PostListView):
 
     def get_context_data(self, **kwargs):
         context = super(PostCategory, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.filter(category__slug=self.kwargs['slug'])
+        context['posts'] = Post.objects.filter(category__slug=self.kwargs['category'])
         return context
 
 
