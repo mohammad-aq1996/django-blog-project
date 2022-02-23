@@ -5,16 +5,22 @@ from .forms import CommentForm
 
 
 class PostListView(ListView):
+    """
+    return descending(the newest post is first) list of all posts, tags, categories, 3 recent post, and admin profile.
+    post list page contain 4 posts
+    """
     model = Post
     paginate_by = 4
     template_name = 'blog/blog.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
+        # Return descending list of all posts
         posts = Post.objects.all().order_by('-created_at')
         return posts
 
     def get_context_data(self, **kwargs):
+        # Return tags, categories, 3 recent post, and admin profile.
         context = super().get_context_data(**kwargs)
         context['tags'] = Tag.objects.all()
         context['categories'] = Category.objects.all()
@@ -24,15 +30,25 @@ class PostListView(ListView):
 
 
 class PostCategory(PostListView):
+    """
+    inherit from 'PostListView' for other elements of this page.
+    return posts that contain specific category slug
+    also, there is no paginator and all of the posts display on one single page
+    """
     paginate_by = 0
 
     def get_context_data(self, **kwargs):
+        # Return posts that contain specific category slug
         context = super(PostCategory, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(category__slug=self.kwargs['category'])
         return context
 
 
 class SearchView(PostListView):
+    """
+    Get search box information and return posts their title contains search box information
+    also, there is no paginator and all of the posts display on one single page
+    """
     paginate_by = 0
 
     def get_context_data(self, **kwargs):
@@ -43,6 +59,11 @@ class SearchView(PostListView):
 
 
 class PostTag(PostListView):
+    """
+    inherit from 'PostListView' for other elements of this page.
+    return posts that contain specific tags slug
+    also, there is no paginator and all of the posts display on one single page
+    """
     paginate_by = 0
 
     def get_context_data(self, **kwargs):
@@ -52,6 +73,10 @@ class PostTag(PostListView):
 
 
 def post_detail_view(request, pk):
+    """
+    Return specific post that specify by primary key and contain comment section in this page
+    Also, returns all tags, categories, 3 recent post, and admin profile.
+    """
     context = dict()
     context['post'] = Post.objects.get(id=pk)
     context['tags'] = Tag.objects.all()
