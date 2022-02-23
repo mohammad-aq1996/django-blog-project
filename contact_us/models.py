@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Contact(models.Model):
+    # creating a table for blog contact info in database
     address = models.CharField(max_length=400)
     phone_no = models.CharField(max_length=11)
     email = models.EmailField()
@@ -12,6 +13,7 @@ class Contact(models.Model):
 
 
 class Comment(models.Model):
+    # creating a table for comments in database
     name = models.CharField(max_length=150)
     email = models.EmailField()
     subject = models.CharField(max_length=250)
