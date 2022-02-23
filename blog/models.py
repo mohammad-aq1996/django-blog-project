@@ -4,6 +4,9 @@ from ckeditor.fields import RichTextField
 
 
 class Post(models.Model):
+    """
+    creating a table for blog post in database
+    """
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author', default=1)
     title = models.CharField(max_length=150)
     content = RichTextField()
@@ -17,6 +20,10 @@ class Post(models.Model):
 
 
 class Category(models.Model):
+    """
+    creating a table for categories in database
+    relation: category 1:1 post
+    """
     name = models.CharField(max_length=150)
     slug = models.SlugField()
 
@@ -25,6 +32,10 @@ class Category(models.Model):
 
 
 class Tag(models.Model):
+    """
+    creating a table for tags in database
+    relation: many to many with post
+    """
     name = models.CharField(max_length=150)
     slug = models.SlugField()
 
@@ -33,6 +44,10 @@ class Tag(models.Model):
 
 
 class Blogger(models.Model):
+    """
+    creating a table for blogger profile in database
+    relation: blogger 1:1 user
+    """
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     describe = models.CharField(max_length=100)
     content = models.TextField()
@@ -43,6 +58,10 @@ class Blogger(models.Model):
 
 
 class Comment(models.Model):
+    """
+    creating a table for comments in database
+    relation: post 1:N comments
+    """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=150)
     email = models.EmailField()
