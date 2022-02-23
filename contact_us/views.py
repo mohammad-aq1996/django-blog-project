@@ -4,6 +4,10 @@ from .forms import CommentForm
 
 
 def contact_view(request):
+    """
+    return the contact information which is the first element of Contact table
+    receiving the comment of visitors
+    """
     contact = Contact.objects.get(id=1)
 
     if request.method == 'POST':
