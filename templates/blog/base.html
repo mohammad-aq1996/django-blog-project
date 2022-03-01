@@ -26,6 +26,19 @@
         {% include 'blog/partials/_header.html' %}
         <!--================Header Menu Area =================-->
 
+        <!--================Home Banner Area =================-->
+        <section class="home_banner_area blog_banner">
+            <div class="banner_inner d-flex align-items-center">
+            	<div style="background: url({% static 'blog/img/banner/home-banner.jpg' %}) no-repeat scroll center center;" class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="blog_b_text text-center">
+						<h2>با شما همراهیم</h2>
+						<p>از جدیدترین مطالب بهره مند شوید</p>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
         {% block content %}
 
         {% endblock %}

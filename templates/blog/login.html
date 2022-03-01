@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br><br><br><br><br>
+    <div class="container">
+      <h2></h2>
+        {% if error %}
+        <p style="color:red">{{ error }}</p>
+        {% endif %}
+      <form method="post">
+       {% csrf_token %}
+        <div class="form-group">
+          <label for="email">نام کاربری:</label>
+          <input type="text" class="form-control" id="uname" placeholder="نام کاربری خود را وارد کنید" name="username">
+        </div>
+        <div class="form-group">
+          <label for="pwd">رمز عبور:</label>
+          <input type="password" class="form-control" id="pwd" placeholder="رمز عبور خود را وارد کنید" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-success">ورود</button>
+      </form>
+    </div>
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

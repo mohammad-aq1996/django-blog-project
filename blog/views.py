@@ -1,7 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from .models import Post, Category, Tag, Blogger, Comment
 from .forms import CommentForm
+from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.decorators import login_required
+
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect('blog:post_list')
+            else:
+                error = 'حساب کاربری شما فعال نمیباشد.'
+                return render(request, 'blog/login.html', {'error': error})
+        else:
+            error = 'نام کاربری یا رمز عبور اشتباه میباشد.'
+            return render(request, 'blog/login.html', {'error': error})
+    else:
+        return render(request, 'blog/login.html')
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('blog:post_list')
 
 
 class PostListView(ListView):
