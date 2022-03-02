@@ -37,11 +37,15 @@
                                 <p class="excert">
                                     {{ post.content|safe }}
                                 </p>
-                            <p style="padding: 20px; background-color: #00B0E8"><a href="{% url 'blog:post_update' post.id %}">ویرایش</a> </p>
+
 
                             </div>
-
-
+                        {% if user.is_authenticated %}
+                             <span style="padding: 20px; background-color: #00B0E8;"><a href="{% url 'blog:post_update' post.id %}"
+                                                                                       style="color: white;">ویرایش</a> </span>
+                            <span style="padding: 20px; background-color: red;"><a href="{% url 'blog:post_delete' post.id %}"
+                                                                                      style="color: white;">حذف</a> </span>
+                        {% endif %} 
                         </div>
                         <div class="comments-area" >
                             <h4>  تعداد نظرات: {{ post.comments.count }}</h4>

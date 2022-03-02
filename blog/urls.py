@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (PostListView, SearchView, PostCategory,
                     PostTag, post_detail_view, login_view,
-                    logout_view, PostCreateView, PostUpdateView,)
+                    logout_view, PostCreateView, PostUpdateView,PostDeleteView)
 
 
 app_name = 'blog'
@@ -15,4 +15,6 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('create/', PostCreateView.as_view(), name='post_create'),
     path('update/<int:pk>/', PostUpdateView.as_view(), name='post_update'),
+    path('delete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),
+
 ]

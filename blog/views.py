@@ -5,7 +5,7 @@ from .forms import CommentForm, PostForm
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.urls import reverse_lazy
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
@@ -21,6 +21,13 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'blog/create_post.html'
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    model = Post
+    template_name = 'blog/post_del.html'
+    success_url = reverse_lazy('blog:post_list')
 
 
 def login_view(request):
