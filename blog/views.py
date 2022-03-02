@@ -1,9 +1,26 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Post, Category, Tag, Blogger, Comment
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
+    redirect_field_name = 'blog/blog.html'
+    model = Post
+    form_class = PostForm
+    template_name = 'blog/create_post.html'
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
+
+    form_class = PostForm
+    model = Post
+    template_name = 'blog/create_post.html'
 
 
 def login_view(request):

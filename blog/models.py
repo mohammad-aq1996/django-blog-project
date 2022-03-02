@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.shortcuts import reverse
 
 
 class Post(models.Model):
@@ -14,6 +15,9 @@ class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category')
     tags = models.ManyToManyField('Tag', related_name='tags')
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', kwargs={'pk': self.id})
 
     def __str__(self):
         return self.title
