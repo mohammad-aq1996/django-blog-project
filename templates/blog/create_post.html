@@ -1,9 +1,12 @@
 {% extends 'blog/base.html' %}
-
+{% load jalali_tags %}
+{% load static %}
 {% block content %}
+
 <body dir="rtl">
 <div class="container">
     <div class="jumbotron">
+
         <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
@@ -11,4 +14,5 @@
         <input type="submit" class="btn btn-success" value="افزودن پست">
     </form>
     </div>
+</div>
 {% endblock %}

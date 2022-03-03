@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.shortcuts import reverse
+from django.utils import timezone
 
 
 class Post(models.Model):
@@ -14,7 +15,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post', verbose_name='تصویر')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category', verbose_name='دسته بندی')
     tags = models.ManyToManyField('Tag', related_name='tags', verbose_name='تگ ها')
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name='تاریخ انتشار')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='زمان نوشته شدن')
+    published_at = models.DateTimeField(blank=True, null=True, verbose_name='زمان انتشار')
 
     class Meta:
         verbose_name = 'پست'
