@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <form action="" method="post">
+            {% csrf_token %}
+            <p>آیا از حذف پست "{{ object }}" مطمئن هستید؟</p>
+            <input class='btn btn-danger' type="submit" value="بله" />
+        </form>
+        </div>
+    </div>
+{% endblock %}

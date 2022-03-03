@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load jalali_tags %}
 {% block content %}
 
 
@@ -26,7 +27,7 @@
                                     </div>
                                     <ul class="blog_meta list" dir="ltr">
                                                 <li><a href="#" >{{ post.author.first_name }} {{ post.author.last_name }}<i class="lnr lnr-user"></i></a></li>
-                                                <li><a href="#" > {{ post.created_at|date }}<i class="lnr lnr-calendar-full"></i></a></li>
+                                                <li><a href="#" > {{ post.created_at|to_jalali:'%B %Y' }}<i class="lnr lnr-calendar-full"></i></a></li>
 
                                      </ul>
 
@@ -45,7 +46,7 @@
                                                                                        style="color: white;">ویرایش</a> </span>
                             <span style="padding: 20px; background-color: red;"><a href="{% url 'blog:post_delete' post.id %}"
                                                                                       style="color: white;">حذف</a> </span>
-                        {% endif %} 
+                        {% endif %}
                         </div>
                         <div class="comments-area" >
                             <h4>  تعداد نظرات: {{ post.comments.count }}</h4>
@@ -55,7 +56,7 @@
                                     <div class="user justify-content-between d-flex">
                                         <div class="desc">
                                             <h5><a href="#">{{ com.name }}</a></h5>
-                                            <p class="date">{{ com.created_at|date }} </p>
+                                            <p class="date">{{ com.created_at|to_jalali:'%B %Y' }} </p>
                                             <p>{{ com.message }}</p>
                                         </div>
                                     </div>
@@ -119,7 +120,7 @@
                                         <img src="{{ post.image.url }}" width="80px" alt="post">
                                         <div class="media-body">
                                             <a href="{% url 'blog:post_detail' pst.id %}"><h3>{{ pst.title }}</h3></a>
-                                            <p>{{ post.created_at }}</p>
+                                            <p>{{ post.created_at|to_jalali:'%B %Y' }}</p>
                                         </div>
                                     </div>
                                     {% endfor %}
