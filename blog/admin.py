@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Post, Category, Blogger, Tag, Comment
 
-admin.site.register(Comment)
 admin.site.register(Blogger)
 
 
@@ -27,6 +26,13 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
     list_display_links = ['slug']
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['title', 'post', 'status']
+    list_editable = ['status']
+
 
 
 

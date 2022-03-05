@@ -143,7 +143,7 @@ def post_detail_view(request, pk):
     context['recent'] = Post.objects.all().order_by('-created_at')[:3]
     context['blogger'] = Blogger.objects.get(id=1)
     context['posts'] = Post.objects.all()
-
+    context['comments'] = Comment.objects.filter(status__exact='publish').order_by('-created_at')
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -159,3 +159,24 @@ def post_detail_view(request, pk):
             comment.save()
 
     return render(request, 'blog/single-blog.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

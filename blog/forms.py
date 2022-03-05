@@ -32,7 +32,7 @@ class PostForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
-        self.fields['created_at'] = JalaliDateField(widget=AdminJalaliDateWidget)
-        self.fields['published_at'] = JalaliDateField(widget=AdminJalaliDateWidget)
+        self.fields['created_at'] = JalaliDateField(label='تاریخ ایجاد', widget=AdminJalaliDateWidget)
+        self.fields['published_at'] = JalaliDateField(label='تاریخ انتشار', widget=AdminJalaliDateWidget)
 
 

@@ -8,6 +8,10 @@ class Contact(models.Model):
     email = models.EmailField()
     describe = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name = 'اطلاعات صفحه تماس با ما'
+        verbose_name_plural = 'اطلاعات صفحه تماس با ما'
+
     def __str__(self):
         return self.email
 
@@ -19,6 +23,10 @@ class Comment(models.Model):
     subject = models.CharField(max_length=250)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'نظر'
+        verbose_name_plural = 'نظرات'
 
     def __str__(self):
         return self.email

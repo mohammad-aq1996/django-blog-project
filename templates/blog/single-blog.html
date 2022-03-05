@@ -49,9 +49,9 @@
                         {% endif %}
                         </div>
                         <div class="comments-area" >
-                            <h4>  تعداد نظرات: {{ post.comments.count }}</h4>
+                            <h4>  تعداد نظرات: {{ comments.count }}</h4>
                             <div class="comment-list">
-                                {% for com in post.comments.all %}
+                                {% for com in comments %}
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="desc">
@@ -86,7 +86,7 @@
                                     <textarea class="form-control mb-10" rows="5" name="message" placeholder="متن پیام" onfocus="this.placeholder = ''" onblur="this.placeholder = 'پیام'" required=""></textarea>
                                 </div>
 {#                                <a href="#" class="primary-btn submit_btn">ارسال نظر</a>#}
-                                <input type="submit" value="ارسال نظر">
+                                <input type="submit" class="btn btn-primary" value="ارسال نظر">
                             </form>
                         </div>
                     </div>

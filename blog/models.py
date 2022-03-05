@@ -84,12 +84,21 @@ class Comment(models.Model):
     creating a table for comments in database
     relation: post 1:N comments
     """
+    STATUS_CHOICE = [
+        ('draft', 'Draft'),
+        ('publish', 'Publish')
+    ]
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=150)
     email = models.EmailField()
     title = models.CharField(max_length=250)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    status = models.CharField(max_length=8, choices=STATUS_CHOICE, default='draft')
+
+    class Meta:
+        verbose_name = 'نظر'
+        verbose_name_plural = 'نظرات'
 
     def __str__(self):
         return self.email
