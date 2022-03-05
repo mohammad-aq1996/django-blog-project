@@ -14,9 +14,10 @@
                     <ul class="nav navbar-nav menu_nav">
                         <li class="nav-item active"><a class="nav-link" href="{% url 'blog:post_list' %}" style="padding: 20px">خانه</a></li>
                         <li class="nav-item active"><a class="nav-link" href="{% url 'contact:contact_us' %}" style="padding: 20px" >تماس با ما</a></li>
-                        <li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li>
+                        <li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li></li></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li><li class="nav-item active"></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item active"><a class="nav-link" href="{% url 'blog:post_create' %}" style="padding: 20px" >افزودن پست</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'blog:post_draft' %}" style="padding: 20px" >درافت</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
                             <li class="nav-item active"><a class="nav-link" href="{% url 'blog:logout' %}" style="padding: 20px" >خروج</a></li>

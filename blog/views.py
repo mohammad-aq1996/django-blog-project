@@ -68,7 +68,7 @@ class PostListView(ListView):
 
     def get_queryset(self):
         # Return descending list of all posts
-        posts = Post.objects.all().order_by('-created_at')
+        posts = Post.objects.filter(published_at__isnull=False).order_by('-published_at')
         return posts
 
     def get_context_data(self, **kwargs):
@@ -76,9 +76,16 @@ class PostListView(ListView):
         context = super().get_context_data(**kwargs)
         context['tags'] = Tag.objects.all()
         context['categories'] = Category.objects.all()
-        context['recent'] = Post.objects.all().order_by('-created_at')[:3]
+        context['recent'] = Post.objects.all().order_by('-published_at')[:3]
         context['blogger'] = Blogger.objects.get(id=1)
         return context
+
+
+class PostDraftListView(LoginRequiredMixin, PostListView):
+    login_url = '/login/'
+
+    def get_queryset(self):
+        return Post.objects.filter(published_at__isnull=True).order_by('-created_at')
 
 
 class PostCategory(PostListView):
