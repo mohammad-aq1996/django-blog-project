@@ -73,6 +73,9 @@
                                 {% csrf_token %}
                                 <div class="form-group form-inline">
                                   <div class="form-group col-lg-6 col-md-6 name">
+                                      {% if error %}
+                                         <p style="background-color: red">{{ error }}</p>
+                                      {% endif %}
                                     <input type="text" name="name" class="form-control" id="name" placeholder="نام " onfocus="this.placeholder = ''" onblur="this.placeholder = 'نام را وارد کنید'">
                                   </div>
                                   <div class="form-group col-lg-6 col-md-6 email" >
