@@ -3,6 +3,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.shortcuts import reverse
 from django.utils import timezone
+from jalali_date import datetime2jalali
 
 
 class Post(models.Model):
@@ -21,6 +22,9 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'پست'
         verbose_name_plural = 'پست ها'
+        
+    def get_published_jalali(self):
+        return datetime2jalali(self.published_at)
 
     def get_absolute_url(self):
         return reverse('blog:post_detail', kwargs={'pk': self.id})
@@ -103,6 +107,8 @@ class Comment(models.Model):
     def __str__(self):
         return self.email
 
+    def get_comment_jalali(self):
+        return datetime2jalali(self.created_at)
 
 
 

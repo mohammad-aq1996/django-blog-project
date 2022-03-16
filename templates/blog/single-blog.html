@@ -29,7 +29,7 @@
                                     </div>
                                     <ul class="blog_meta list" dir="ltr">
                                                 <li><a href="#" >{{ post.author.first_name }} {{ post.author.last_name }}<i class="lnr lnr-user"></i></a></li>
-                                                <li><a href="#" > {{ post.created_at|to_jalali:'%B %Y' }}<i class="lnr lnr-calendar-full"></i></a></li>
+                                                <li><a href="#" > {{ post.get_published_jalali|date:'Y/m/d' }}<i class="lnr lnr-calendar-full"></i></a></li>
 
                                      </ul>
 
@@ -58,13 +58,15 @@
                                     <div class="user justify-content-between d-flex">
                                         <div class="desc">
                                             <h5><a href="#">{{ com.name }}</a></h5>
-                                            <p class="date">{{ com.created_at|to_jalali:'%B %Y' }} </p>
+                                            <p class="date">{{ com.get_comment_jalali|date:'Y/m/d' }} </p>
                                             <p>{{ com.message }}</p>
+                                            
                                         </div>
                                     </div>
 
 
                                 </div>
+                                <hr>
                                 {% endfor %}
                             </div>	
 
@@ -125,7 +127,7 @@
                                         <img src="{{ post.image.url }}" width="80px" alt="post">
                                         <div class="media-body">
                                             <a href="{% url 'blog:post_detail' pst.id %}"><h3>{{ pst.title }}</h3></a>
-                                            <p>{{ post.created_at|to_jalali:'%B %Y' }}</p>
+                                            <p>{{ post.get_published_jalali|date:'Y/m/d' }}</p>
                                         </div>
                                     </div>
                                     {% endfor %}

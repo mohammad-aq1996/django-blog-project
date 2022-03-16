@@ -28,7 +28,7 @@
                                         </div>
                                         <ul class="blog_meta list" dir="ltr">
                                                 <li><a href="#" >{{ blog.author.first_name }} {{ blog.author.last_name }}<i class="lnr lnr-user"></i></a></li>
-                                                <li><a href="#" > {{ blog.created_at|to_jalali:'%B %Y' }}<i class="lnr lnr-calendar-full"></i></a></li>
+                                                <li><a href="#" > {{ blog.get_published_jalali|date:'Y/m/d' }}<i class="lnr lnr-calendar-full"></i></a></li>
 
                                          </ul>
                                     </div>
@@ -108,7 +108,7 @@
                                         <img src="{{ post.image.url }}" width="80px" alt="post">
                                         <div class="media-body">
                                             <a href="{% url 'blog:post_detail' post.id %}"><h3>{{ post.title }}</h3></a>
-                                            <p>{{ post.created_at|to_jalali:'%B %Y' }}</p>
+                                            <p>{{ post.get_published_jalali|date:'Y/m/d' }}</p>
                                         </div>
                                     </div>
                                     {% endfor %}
