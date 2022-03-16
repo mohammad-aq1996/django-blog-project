@@ -8,8 +8,8 @@ from jalali_date.widgets import AdminJalaliDateWidget, AdminSplitJalaliDateTime
 
 class CommentForm(forms.ModelForm):
     """
-    Return a form for comment
-    This form will be used in posts detail view
+        Return a form for comment
+        This form will be used in posts detail view
     """
 
     class Meta:
@@ -18,6 +18,10 @@ class CommentForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
+    """
+        Return a form for create new post
+    """
+
     content = forms.CharField(widget=CKEditorWidget())
 
     class Meta:

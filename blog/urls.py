@@ -19,5 +19,6 @@ urlpatterns = [
     path('draft/', PostDraftListView.as_view(), name='post_draft'),
 
     path('post/<int:pk>/', PostDetail.as_view(), name='post_detail'),
+    # path('post/<int:pk>/', post_detail_view, name='post_detail'),
 
 ]

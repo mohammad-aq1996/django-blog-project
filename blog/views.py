@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
 from .models import Post, Category, Tag, Blogger, Comment
 from .forms import CommentForm, PostForm
@@ -6,6 +7,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.http import Http404, HttpResponseRedirect
 
 
 class PostListView(ListView):
@@ -48,7 +50,7 @@ class PostDetail(View):
         context['recent'] = Post.objects.all().order_by('-created_at')[:3]
         context['blogger'] = Blogger.objects.get(id=1)
         context['posts'] = Post.objects.all()
-        context['comments'] = Comment.objects.filter(status__exact='publish').order_by('-created_at')
+        context['comments'] = Comment.objects.filter(post__title=context['post'].title, status__exact='publish').order_by('-created_at')
         return render(request, self.template_name, context)
 
     def post(self, request, **kwargs):
@@ -65,7 +67,7 @@ class PostDetail(View):
                               title=title,
                               message=message)
             comment.save()
-            return redirect('blog:post_detail')
+            return self.get(request)
         return render(request, self.template_name, {'error': 'ایمیل شما صحیح نمیباشد.'})
 
 
@@ -222,7 +224,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 #     context['recent'] = Post.objects.all().order_by('-created_at')[:3]
 #     context['blogger'] = Blogger.objects.get(id=1)
 #     context['posts'] = Post.objects.all()
-#     context['comments'] = Comment.objects.filter(status__exact='publish').order_by('-created_at')
+#     context['comments'] = Comment.objects.filter(post__title=context['post'].title, status__exact='publish').order_by('-created_at')
 #     if request.method == 'POST':
 #         form = CommentForm(request.POST)
 #         if form.is_valid():
@@ -236,7 +238,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 #                               title=title,
 #                               message=message)
 #             comment.save()
-#
+
 #     return render(request, 'blog/single-blog.html', context)
 
 
