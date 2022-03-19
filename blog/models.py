@@ -54,12 +54,12 @@ class Tag(models.Model):
     creating a table for tags in database
     relation: many to many with post
     """
-    name = models.CharField(max_length=150, verbose_name='عنوان تگ')
+    name = models.CharField(max_length=150, verbose_name='عنوان برچسب')
     slug = models.SlugField()
 
     class Meta:
-        verbose_name = 'تگ'
-        verbose_name_plural = 'تگ ها'
+        verbose_name = 'برچسب'
+        verbose_name_plural = 'برچسب ها'
 
     def __str__(self):
         return self.name
@@ -76,8 +76,8 @@ class Blogger(models.Model):
     image = models.ImageField(upload_to='post', verbose_name='تصویر')
 
     class Meta:
-        verbose_name = 'ادمین وبلاگ'
-        verbose_name_plural = 'ادمین وبلاگ'
+        verbose_name = 'مدیر وبلاگ'
+        verbose_name_plural = 'مدیر وبلاگ'
 
     def __str__(self):
         return self.author.username
@@ -92,13 +92,13 @@ class Comment(models.Model):
         ('draft', 'Draft'),
         ('publish', 'Publish')
     ]
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=150)
-    email = models.EmailField()
-    title = models.CharField(max_length=250)
-    message = models.TextField()
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    status = models.CharField(max_length=8, choices=STATUS_CHOICE, default='draft')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name='پست')
+    name = models.CharField(max_length=150, verbose_name='نام')
+    email = models.EmailField(verbose_name='ایمیل')
+    title = models.CharField(max_length=250, verbose_name='عنوان')
+    message = models.TextField(verbose_name='پیام')
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name='زمان ارسال')
+    status = models.CharField(max_length=8, choices=STATUS_CHOICE, default='draft', verbose_name='وضغیت')
 
     class Meta:
         verbose_name = 'نظر'
