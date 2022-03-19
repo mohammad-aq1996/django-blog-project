@@ -18,7 +18,7 @@
                     <ul class="nav navbar-nav navbar-left" style="margin-left: 144px">
                     {% if user.is_authenticated %}
                         <li class="nav-item active"><a class="nav-link" href="{% url 'blog:post_create' %}" style="padding: 20px" >افزودن پست</a></li>
-                        <li class="nav-item active"><a class="nav-link" href="{% url 'blog:post_draft' %}" style="padding: 20px" >درافت</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'blog:post_draft' %}" style="padding: 20px" >پست های منتشر نشده</a></li>
 
                         <li class="nav-item active"><a class="nav-link" href="{% url 'blog:logout' %}" style="padding: 20px" >خروج</a></li>
                     {% else %}

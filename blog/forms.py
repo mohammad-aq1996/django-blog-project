@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
         Return a form for create new post
     """
 
-    content = forms.CharField(widget=CKEditorWidget())
+    content = forms.CharField(widget=CKEditorWidget(), label='محتوا')
 
     class Meta:
         model = Post
@@ -37,6 +37,6 @@ class PostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.fields['created_at'] = JalaliDateField(label='تاریخ ایجاد', widget=AdminJalaliDateWidget)
-        self.fields['published_at'] = JalaliDateField(label='تاریخ انتشار', widget=AdminJalaliDateWidget)
+        self.fields['published_at'] = JalaliDateField(label='تاریخ انتشار', widget=AdminJalaliDateWidget, required=False)
 
 
