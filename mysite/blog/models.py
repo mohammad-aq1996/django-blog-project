@@ -65,22 +65,22 @@ class Tag(models.Model):
         return self.name
 
 
-class Blogger(models.Model):
-    """
-    creating a table for blogger profile in database
-    relation: blogger 1:1 user
-    """
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', verbose_name='نویسنده')
-    describe = models.CharField(max_length=100, verbose_name='عنوان')
-    content = RichTextField(verbose_name='توضیحات')
-    image = models.ImageField(upload_to='post', verbose_name='تصویر')
-
-    class Meta:
-        verbose_name = 'مدیر وبلاگ'
-        verbose_name_plural = 'مدیر وبلاگ'
-
-    def __str__(self):
-        return self.author.username
+# class Blogger(models.Model):
+#     """
+#     creating a table for blogger profile in database
+#     relation: blogger 1:1 user
+#     """
+#     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', verbose_name='نویسنده')
+#     describe = models.CharField(max_length=100, verbose_name='عنوان')
+#     content = RichTextField(verbose_name='توضیحات')
+#     image = models.ImageField(upload_to='post', verbose_name='تصویر')
+#
+#     class Meta:
+#         verbose_name = 'مدیر وبلاگ'
+#         verbose_name_plural = 'مدیر وبلاگ'
+#
+#     def __str__(self):
+#         return self.author.username
 
 
 class Comment(models.Model):
