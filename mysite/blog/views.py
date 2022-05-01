@@ -114,41 +114,6 @@ class PostTag(PostListView):
         return context
 
 
-def login_view(request):
-    """
-        If request is: 'get', login page only reload. Otherwise, request is 'post. then, it gets username and password
-            from login template form
-        If there was any user and that user was active, then user can log in. Otherwise, you can see the errors in
-            the relevant template.
-    """
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                return redirect('blog:post_list')
-            else:
-                error = 'حساب کاربری شما فعال نمیباشد.'
-                return render(request, 'blog/../templates/blog/login.html', {'error': error})
-        else:
-            error = 'نام کاربری یا رمز عبور اشتباه میباشد.'
-            return render(request, 'blog/../templates/blog/login.html', {'error': error})
-    else:
-        return render(request, 'blog/../templates/blog/login.html')
-
-
-@login_required
-def logout_view(request):
-    """
-        Logout view function.
-        This simply uses the built-in 'logout' method then redirects to the post list page
-    """
-    logout(request)
-    return redirect('blog:post_list')
-
-
 class PostDraftListView(LoginRequiredMixin, PostListView):
     """
         List of Draft posts.

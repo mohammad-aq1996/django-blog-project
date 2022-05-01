@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Comment, Contact
+from .models import Comment
 from .forms import CommentForm
 
 

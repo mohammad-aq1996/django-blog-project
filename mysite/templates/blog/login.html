@@ -7,8 +7,8 @@
 <br><br><br><br><br>
     <div class="container">
       <h2></h2>
-        {% if error %}
-        <p style="color:red">{{ error }}</p>
+        {% if form.errors %}
+        <p style="color:red">نام کاربری یا رمز عبور صحیح نمیباشد</p>
         {% endif %}
       <form method="post">
        {% csrf_token %}
