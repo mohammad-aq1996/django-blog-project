@@ -8,7 +8,7 @@ def contact_view(request):
     return the contact information which is the first element of Contact table
     receiving the comment of visitors
     """
-    contact = Contact.objects.get(id=1)
+    # contact = Contact.objects.get(id=1)
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -20,7 +20,7 @@ def contact_view(request):
             comment = Comment(name=name, subject=subject, email=email, message=message)
             comment.save()
 
-    context = {
-        'contact': contact
-    }
-    return render(request, 'contact_us/../templates/contact_us/contact.html', context)
+    # context = {
+    #     'contact': contact
+    # }
+    return render(request, 'contact_us/contact.html')
