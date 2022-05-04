@@ -1,0 +1,8 @@
+mysite/.idea
+
+mysite/contact_us/migrations
+
+mysite/blog/migrations
+
+
+.env
