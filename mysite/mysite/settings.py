@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import rest_framework.filters
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,6 +55,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_FILTER_BACKEND': [
+        'rest_framework.filters.SearchFilter'
+    ]
 }
 
 MIDDLEWARE = [
