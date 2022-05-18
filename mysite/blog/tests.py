@@ -45,3 +45,18 @@ class PostTest(TestCase):
         self.assertEqual(self.post.tags.count(), 2)
         self.assertEqual(f'{self.post.created_at}', '2022-02-22 14:26:00')
         self.assertEqual(f'{self.post.published_at}', '2022-02-25 22:26:00')
+
+
+    def test_post_list_view(self):
+        response = self.client.get(reverse('blog:post_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'blog/blog.html')
+        self.assertContains(response, 'Harru Potter')
+        self.assertNotContains(response, 'Not this')
+
+    def test_post_detail_view(self):
+        response = self.client.get(self.post.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'blog/single-blog.html')
+        self.assertContains(response, 'Harru Potter')
+        self.assertNotContains(response, 'Not this')
